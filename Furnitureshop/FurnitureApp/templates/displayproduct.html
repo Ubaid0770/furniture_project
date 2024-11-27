@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Product Table</h4>
+       
+            </p>
+            <table class="table-responsive " >
+              <thead>
+                <tr>
+                  <th class="design">Product Category</th>
+                  <th class="design">Product Name</th>
+                  <th class="design">Quantity</th>
+                  <th class="design">Price</th>
+                  <th class="design">Description</th>
+                  <th class="design">Country of origin</th>
+                  <th class="design">Manufactured By</th>
+                  <th class="design">Image 1</th>
+                  <th class="design">Image 2</th>
+                  <th class="design">Image 3</th>
+                
+                  <th class="design">Actions</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {% for d in prod %}
+                <tr>
+                    <td class="datas">{{d.productcategory}}</td>
+                    <td class="datas">{{d.productname}}</td>
+                    <td class="datas">{{d.quantity}}</td>
+                    <td class="datas">{{d.price}}</td>
+                    <td class="datas">{{d.description}}</td>
+                    <td class="datas">{{d.countryoforigin}}</td>
+                    <td class="datas">{{d.manufacturedby}}</td>
+                    <td><img src="{{d.productimage1.url}}" style="width: 100px; height: 90px;"></td>
+                    <td><img src="{{d.productimage2.url}}" style="width: 100px; height: 90px;"></td>
+                    <td><img src="{{d.productimage3.url}}" style="width: 100px; height: 90px;"></td>
+                   
+                    <td >
+                        <a href="{% url 'editproductfn' editprod_id=d.id  %}">
+                            <button class=" btn btn-success datas">edit</button>
+                        </a>
+                   </td>
+                   <td>
+                        <a href="{% url 'delete' dell_id=d.id %}">
+                            <button class=" btn btn-danger datas">delete</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+        
+    
+               
+                  
+              
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<style>
+.design{
+        color: rgb(210, 7, 7) ;
+        font-weight: bold;
+        font-size: 15px;        
+        
+        }
+.datas{
+    font-weight: 700;
+    font-size: 15px;
+}        
+</style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+           {% if messages %}
+           {% for i in messages%}
+           {% if i.tags == 'success' %}
+           <script>
+            swal('{{i}}','','success');
+           </script>  
+           {% elif i.tags == 'error' %}
+           <script>
+            swal('{{i}}','','error');
+           </script>
+           {% elif i.tags == 'warning' %}
+           <script>
+            swal('{{i}}','','warning');
+           </script>
+           {% elif i.tags == 'info' %}
+           <script>
+            swal('{{i}}','','info');
+           </script>
+           {% endif %}
+           {% endfor %}
+           {% endif %}
+           
+</body>
+</html>
+{% endblock %}

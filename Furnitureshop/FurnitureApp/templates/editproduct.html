@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card" style="border: solid 1px black;">
+        <div class="card" >
+          <div class="card-body">
+            <h4 class="card-title" style="font-size: 25px; font-weight: 900; color: rgb(201, 0, 0);">Product Details</h4>
+            
+            <form class="forms-sample" method="post" action="{% url 'update' editprod_id=edits.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group" >
+                    <label for="exampleSelectGender">Product Category</label>
+                    <select class="form-control" id="exampleSelectGender" name="productcategory">
+                    <option>{{edits.productcategory}}</option>  
+                    {% for i in dat %}
+                    <option>{{i.cname}}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+              <div class="form-group">
+                <label for="exampleInputName1">Product Name</label>
+                <input type="text" class="form-control" id="exampleInputName1" placeholder="Product Name" name="productname" value="{{edits.productname}}">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail3">Quantity</label>
+                <input type="number" class="form-control"  placeholder="Quantity" name="quantity" value="{{edits.quantity}}" >
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail3">Price</label>
+                <input type="number" class="form-control"  placeholder="Price" name="price" value="{{edits.price}}">
+              </div>
+              <div class="form-group">
+                <label for="exampleTextarea1">Description</label>
+                <textarea class="form-control" id="exampleTextarea1" rows="4" name="description">{{edits.description}}</textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputCity1">Country of origin</label>
+                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Country of origin" name="country" value="{{edits.countryoforigin}}">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputCity1">Manufactured By</label>
+                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Manufactured By" name="manufactured" value="{{edits.manufacturedby}}">
+              </div>
+
+              <div class="form-group">
+                <label for="formFileSm" class="form-label">Upload the picture</label>
+                <img src="{{edits.productimage1.url}}" style="height: 90px; width: 90px;">
+                <input class="form-control" id="formFileSm" name="image1" type="file">
+            </div>
+            <div class="form-group">
+                <label for="formFileSm" class="form-label">Upload the picture</label>
+                <img src="{{edits.productimage2.url}}" style="height: 90px; width: 90px;">
+                <input  class="form-control" id="formFileSm" name="image2" type="file" >
+            </div><div class="form-group">
+                <label for="formFileSm" class="form-label">Upload the picture</label>
+                <img src="{{edits.productimage3.url}}" style="height: 90px; width: 90px;">
+                <input  class="form-control" id="formFileSm" name="image3" type="file" >
+            </div>
+            
+              
+              <button type="submit" class="btn btn-primary mr-2">Update</button>
+              <button class="btn btn-light">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+</body>
+</html>
+{% endblock %}

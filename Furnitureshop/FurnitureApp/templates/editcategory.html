@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+        <div class="col-9 grid-margin stretch-card"> 
+           
+           
+                <div class="card">
+                    <form method="post" action="{% url 'updatecategoryfn' edit_id=ed.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                  <div class="card-body">
+                    <h4 class="card-title">Category Details</h4>
+                    <p class="card-description">Enter the categories here...! </p>
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        <label for="exampleInputName1">Category Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Category Name" name="categoryname" value="{{ed.cname}}">
+                      </div>
+                   
+                      <div class="form-group">
+                        <label for="formFileSm" class="form-label">Upload the picture</label>
+                        <img src="{{ed.cimage.url}}" style="width: 100px; height: 100px;">
+                        <input  class="form-control" id="formFileSm" name="picture" type="file" >
+                    </div>
+                      
+                      <div class="form-group">
+                        <label for="exampleTextarea1">Description</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" name="description">{{ed.cdescription}}</textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">Update</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </form>
+                </div>
+            
+           </div>
+           
+</body>
+</html>
+{% endblock %}
